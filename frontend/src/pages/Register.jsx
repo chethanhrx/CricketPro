@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { authAPI } from '../services/api';
+import { motion } from 'framer-motion';
 
 const ROLES = [
   { value: 'PLAYER', label: '🏏 Player', desc: 'Register for tournaments' },
@@ -32,84 +33,164 @@ export default function Register() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-      <div className="glass-card" style={{ maxWidth: 500, width: '100%', padding: '2.5rem' }}>
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🏏</div>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem' }}>Join CricketPro</h1>
-          <p style={{ color: 'var(--text-muted)', marginTop: '0.3rem' }}>Create your cricket account</p>
-        </div>
-
-        {error && (
-          <div style={{
-            background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)',
-            borderRadius: 'var(--radius-md)', padding: '0.75rem', marginBottom: '1rem',
-            color: 'var(--accent-danger)', fontSize: '0.9rem',
-          }}>
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <div>
-            <label style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.3rem', display: 'block' }}>Full Name</label>
-            <input className="input-field" required placeholder="Virat Kohli"
-              value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-          </div>
-          <div>
-            <label style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.3rem', display: 'block' }}>Email</label>
-            <input className="input-field" type="email" required placeholder="you@example.com"
-              value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-          </div>
-          <div>
-            <label style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.3rem', display: 'block' }}>Password</label>
-            <input className="input-field" type="password" required placeholder="Min 6 characters" minLength={6}
-              value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} />
-          </div>
-          <div>
-            <label style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.3rem', display: 'block' }}>Phone</label>
-            <input className="input-field" placeholder="+91 98765 43210"
-              value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-          </div>
-          <div>
-            <label style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.3rem', display: 'block' }}>Location</label>
-            <input className="input-field" placeholder="Bangalore, Karnataka"
-              value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
-          </div>
-
-          {/* Role Selector */}
-          <div>
-            <label style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', display: 'block' }}>I am a...</label>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-              {ROLES.map((role) => (
-                <div key={role.value}
-                  onClick={() => setForm({ ...form, role: role.value })}
-                  style={{
-                    padding: '0.75rem', borderRadius: 'var(--radius-md)', cursor: 'pointer',
-                    background: form.role === role.value ? 'rgba(245, 158, 11, 0.1)' : 'var(--bg-secondary)',
-                    border: `1px solid ${form.role === role.value ? 'var(--accent-primary)' : 'var(--border-subtle)'}`,
-                    transition: 'all 0.2s',
-                  }}>
-                  <div style={{ fontWeight: 600, fontSize: '0.9rem' }}>{role.label}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>{role.desc}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <button className="btn btn-primary" type="submit" disabled={loading}
-            style={{ width: '100%', marginTop: '0.5rem' }}>
-            {loading ? 'Creating account...' : 'Create Account'}
-          </button>
-        </form>
-
-        <p style={{ textAlign: 'center', marginTop: '1.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-          Already have an account?{' '}
-          <Link to="/login" style={{ color: 'var(--accent-primary)', textDecoration: 'none', fontWeight: 600 }}>
-            Sign In
-          </Link>
-        </p>
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-bg font-sans px-4 py-12">
+      {/* Dynamic Glowing Backgrounds */}
+      <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none overflow-hidden fixed">
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0], opacity: [0.4, 0.6, 0.4] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-gold/20 blur-[120px]"
+        />
+        <motion.div
+          animate={{ scale: [1, 1.5, 1], rotate: [0, -90, 0], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-navy/10 blur-[100px]"
+        />
       </div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 40, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.7, type: "spring", bounce: 0.4 }}
+        className="w-full max-w-[550px]"
+      >
+        <div className="bg-white/70 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_40px_80px_-20px_rgba(26,26,46,0.2)] border border-white p-10 relative overflow-hidden">
+          
+          {/* Glossy Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/20 to-transparent pointer-events-none z-0 rounded-[2.5rem]"></div>
+          
+          <div className="relative z-10">
+            <div className="text-center mb-10">
+              <motion.div 
+                animate={{ rotate: [0, -10, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="text-6xl mb-4"
+              >
+                🏏
+              </motion.div>
+              <h1 className="text-4xl font-black text-navy tracking-tight">Join CricketPro</h1>
+              <p className="text-gray-500 font-medium mt-2">Create your cricket account</p>
+            </div>
+
+            {error && (
+              <motion.div 
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-red/10 border border-red/30 text-red px-4 py-3 rounded-2xl mb-6 text-sm font-bold shadow-sm"
+              >
+                {error}
+              </motion.div>
+            )}
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label className="text-sm font-bold text-navy mb-2 block uppercase tracking-wide">Full Name</label>
+                  <input 
+                    required 
+                    placeholder="Virat Kohli"
+                    className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-gray-200 focus:border-gold focus:ring-4 focus:ring-gold/20 outline-none transition-all duration-300 font-medium text-navy placeholder:text-gray-400 shadow-inner"
+                    value={form.name} 
+                    onChange={(e) => setForm({ ...form, name: e.target.value })} 
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-bold text-navy mb-2 block uppercase tracking-wide">Email</label>
+                  <input 
+                    type="email" 
+                    required 
+                    placeholder="you@example.com"
+                    className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-gray-200 focus:border-gold focus:ring-4 focus:ring-gold/20 outline-none transition-all duration-300 font-medium text-navy placeholder:text-gray-400 shadow-inner"
+                    value={form.email} 
+                    onChange={(e) => setForm({ ...form, email: e.target.value })} 
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label className="text-sm font-bold text-navy mb-2 block uppercase tracking-wide">Password</label>
+                  <input 
+                    type="password" 
+                    required 
+                    placeholder="Min 6 chars" 
+                    minLength={6}
+                    className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-gray-200 focus:border-gold focus:ring-4 focus:ring-gold/20 outline-none transition-all duration-300 font-medium text-navy placeholder:text-gray-400 shadow-inner"
+                    value={form.password} 
+                    onChange={(e) => setForm({ ...form, password: e.target.value })} 
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-bold text-navy mb-2 block uppercase tracking-wide">Phone</label>
+                  <input 
+                    placeholder="+91 98765 43210"
+                    className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-gray-200 focus:border-gold focus:ring-4 focus:ring-gold/20 outline-none transition-all duration-300 font-medium text-navy placeholder:text-gray-400 shadow-inner"
+                    value={form.phone} 
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })} 
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-sm font-bold text-navy mb-2 block uppercase tracking-wide">Location</label>
+                <input 
+                  placeholder="Bangalore, Karnataka"
+                  className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-gray-200 focus:border-gold focus:ring-4 focus:ring-gold/20 outline-none transition-all duration-300 font-medium text-navy placeholder:text-gray-400 shadow-inner"
+                  value={form.location} 
+                  onChange={(e) => setForm({ ...form, location: e.target.value })} 
+                />
+              </div>
+
+              {/* Role Selector */}
+              <div>
+                <label className="text-sm font-bold text-navy mb-3 block uppercase tracking-wide mt-2">I am a...</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {ROLES.map((role) => (
+                    <motion.div 
+                      key={role.value}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setForm({ ...form, role: role.value })}
+                      className={`p-4 rounded-2xl cursor-pointer transition-all duration-300 border-2 ${
+                        form.role === role.value 
+                          ? 'bg-gold/10 border-gold shadow-[0_5px_15px_-5px_rgba(245,166,35,0.3)]' 
+                          : 'bg-white/50 border-gray-100 hover:border-gray-200 hover:bg-gray-50'
+                      }`}
+                    >
+                      <div className="font-bold text-navy text-sm mb-1">{role.label}</div>
+                      <div className="text-xs text-gray-500 font-medium">{role.desc}</div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              <motion.button 
+                whileHover={{ scale: 1.02, translateY: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full mt-6 bg-navy text-white font-bold text-lg px-6 py-4 rounded-2xl shadow-[0_10px_30px_-10px_rgba(26,26,46,0.6)] hover:shadow-[0_20px_40px_-10px_rgba(26,26,46,0.7)] transition-all duration-300 relative overflow-hidden group disabled:opacity-70 disabled:cursor-not-allowed" 
+                type="submit" 
+                disabled={loading}
+              >
+                <span className="relative z-10">{loading ? 'Creating account...' : 'Create Account'}</span>
+                {!loading && (
+                  <motion.div 
+                    animate={{ x: ["-100%", "200%"] }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent z-0"
+                  />
+                )}
+              </motion.button>
+            </form>
+
+            <p className="text-center mt-8 text-gray-500 font-medium">
+              Already have an account?{' '}
+              <Link to="/login" className="text-navy hover:text-gold font-black transition-colors">
+                Sign In
+              </Link>
+            </p>
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 }

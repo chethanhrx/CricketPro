@@ -198,6 +198,19 @@ cricketpro/frontend/
 
 ### Authentication
 
+#### Demo Accounts (Pre-seeded)
+Use these credentials to test different user roles. They are automatically created on first startup.
+
+| Role | Name | Email | Password |
+|---|---|---|---|
+| **Admin** | Chethan | `admin@cricketpro.in` | `admin123` |
+| **Organizer** | Organizer Demo | `organizer@cricketpro.in` | `organizer123` |
+| **Team Owner** | Owner Royal Kings | `owner1@cricketpro.in` | `owner123` |
+| **Team Owner** | Owner Thunder XI | `owner2@cricketpro.in` | `owner123` |
+| **Player** | Manjunath R | `player1@cricketpro.in` | `player123` |
+| **Player** | Rahul S | `player2@cricketpro.in` | `player123` |
+| **Scorer** | Scorer Demo | `scorer@cricketpro.in` | `scorer123` |
+
 #### Register a new user
 ```bash
 curl -X POST http://localhost:8080/api/auth/register \
