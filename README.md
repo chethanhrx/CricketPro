@@ -1,243 +1,217 @@
-# CricketPro
+<!-- PROJECT LOGO & HERO -->
+<br />
+<div align="center">
+  <a href="https://github.com/chethanhrx/CricketPro">
+    <img src="https://img.icons8.com/?size=256&id=V9A1AovVp1E4&format=png" alt="Logo" width="120" height="120">
+  </a>
 
-IPL Auction Management System - Real-Time Auction Experience
+  <h1 align="center">🏏 CRICKETPRO</h1>
 
-CricketPro is a feature-rich auction management platform built for Indian Premier League (IPL) style franchise auctions. It provides a seamless real-time auction experience for auctioneers and team owners.
+  <p align="center">
+    <strong>The Ultimate IPL-Style Real-Time Live Auction Platform</strong>
+    <br />
+    <br />
+    <a href="https://github.com/chethanhrx/CricketPro/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/chethanhrx/CricketPro/issues">Request Feature</a>
+  </p>
 
-## Key Features
+  <!-- SHIELD BADGES -->
+  <p align="center">
+    <img src="https://img.shields.io/badge/Version-1.0.0-blueviolet?style=for-the-badge&logo=appveyor" alt="Version" />
+    <img src="https://img.shields.io/badge/License-MIT-success?style=for-the-badge" alt="License" />
+    <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge" alt="Status" />
+  </p>
+</div>
 
-- **Real-Time Auction Experience**: Watch live bids, timer countdowns, and auction updates with WebSocket technology
-- **Auction War Room**: Centralized dashboard for auctioneers with player queue, live bidding, and team status
-- **Live Bidding System**: 
-- **Auction War Room**: Centralized dashboard for auctioneers with player queue, live bidding, and team status
-- **Live Bidding System**:
-    - Instant bid updates across all connected clients
-    - Multi-currency support (INR, USD, EUR)
-    - Hype score scoring system to track auction excitement
-- **Team Management**:
-    - Create and manage franchise teams
-    - Set budget limits and track spending
-    - Assign team managers and co-owners
-    - Real-time budget tracaking during auction
-- **Player Management**:
-    - Import and manage player database
-    - Set base prices and player categories
-    - Manage player availability status
-- **Tournament Management**:
-    - Create and configure tournaments (IPL style)
-    - Set auction parameters and bidding rules
-    - Create auction sessions with specific teams
-- **User Authentication**:
-    - Secure registration and login system
-    - Role-based access control (Admin, Auctioneer, Team Owner)
-    - JWT token-based authentication
-- **Modern UI/UX**:
-    - Premium dark theme with high-contrast accents
-    - Sleek, modern interface with smooth animations
-    - Responsive design for desktop and mobile devices
-    - Immersive auction atmosphere with glowing effects and sounds
+---
 
-## Technology Stack
+<!-- ABOUT THE PROJECT -->
+## 🌟 About The Project
 
-### Frontend
-- **React 18+**: Component-based UI framework
-- **React Router**: Client-side routing
-- **WebSocket**: Real-time communication with backend
-- **Tailwind CSS**: Utility-first styling and animations
-- **Custom Design System**: Premium dark theme with gold and crimson accents, glassmorphism effects
+> **CricketPro** is a hyper-premium, full-stack web application designed to simulate the exhilarating experience of a franchise cricket auction. Built with real-time WebSockets, robust Spring Boot micro-services, and an ultra-modern React glassmorphism interface, it transforms any room into a high-stakes auction war room.
 
-### Backend
-- **Spring Boot 3**: Java framework for building REST APIs
-- **Spring Security**: Authentication and authorization
-- **Spring WebSocket**: Real-time WebSocket messaging
-- **JPA/Hibernate**: ORM for database interaction
-- **PostgreSQL**: Relational database management system
+<br/>
 
-### Database
-- **PostgreSQL**: Primary database for all application data
+### 📸 Platform Showcase
 
-## Project Structure
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="50%">
+        <b>🏠 Welcome to CricketPro</b><br/><br/>
+        <img src="./images/homepage.png" alt="Homepage" width="100%"/>
+      </td>
+      <td align="center" width="50%">
+        <b>👑 Franchise Owner Dashboard</b><br/><br/>
+        <img src="./images/owner-dashbaord.png" alt="Owner Dashboard" width="100%"/>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2" width="100%">
+        <b>⭐ Iconic Player Profile Showcase</b><br/><br/>
+        <img src="./images/player-profile.png" alt="Player Profile" width="80%"/>
+      </td>
+    </tr>
+  </table>
+</div>
 
-### Backend Structure
+<br/>
 
-```
-cricketpro/backend/
-├── src/main/java/com/cricketpro/
-│   ├── config/             # Spring Boot configuration
-│   │   ├── SecurityConfig.java
-│   │   └── WebSocketConfig.java
-│   ├── controller/         # REST and WebSocket controllers
-│   │   ├── AuctionController.java
-│   │   ├── AuctionWebSocketController.java
-│   │   ├── AuthController.java
-│   │   └── TournamentController.java
-│   ├── dto/                # Data Transfer Objects
-│   │   ├── AuctionDTO.java
-│   │   ├── AuthDTO.java
-│   │   └── TournamentDTO.java
-│   ├── exception/          # Global exception handling
-│   │   └── GlobalExceptionHandler.java
-│   ├── model/              # JPA entities
-│   │   ├── Delivery.java
-│   │   ├── Innings.java
-│   │   ├── Match.java
-│   │   ├── PlayerStats.java
-│   │   ├── Tournament.java
-│   │   └── ... (other entities)
-│   ├── repository/         # Spring Data JPA repositories
-│   │   ├── AuctionBidRepository.java
-│   │   ├── AuctionPlayerQueueRepository.java
-│   │   ├── AuctionSessionRepository.java
-│   │   ├── TournamentRepository.java
-│   │   └── ... (other repositories)
-│   ├── service/            # Business logic services
-│   │   ├── AuctionService.java
-│   │   ├── AuctionTimerService.java
-│   │   └── ... (other services)
-│   ├── util/               # Utility classes
-│   │   └── JwtUtil.java
-│   └── CricketProApplication.java
-└── pom.xml
-```
+---
 
-### Frontend Structure
+## 🔥 Deep-Dive Features
 
-```
-cricketpro/frontend/
-├── src/
-│   ├── components/         # Reusable UI components
-│   │   ├── Auction/          # Auction-specific components
-│   │   │   ├── AuctionDashboard.jsx
-│   │   │   ├── BidFeed.jsx
-│   │   │   ├── PlayerCard.jsx
-│   │   │   ├── TeamList.jsx
-│   │   │   └── Timer.jsx
-│   │   ├── UI/             # General UI components
-│   │   │   ├── Button.jsx
-│   │   │   ├── GlassCard.jsx
-│   │   │   ├── InputField.jsx
-│   │   │   └── Navbar.jsx
-│   │   └── common/           # Common layout components
-│   │       └── ProtectedRoute.jsx
-│   ├── pages/              # Page-level components
-│   │   ├── AuctionWarRoom.jsx
-│   │   ├── Dashboard.jsx
-│   │   ├── Login.jsx
-│   │   ├── Register.jsx
-│   │   └── TournamentPublic.jsx
-│   ├── services/           # API client services
-│   │   ├── api.js            # Axios API configuration
-│   │   ├── authService.js
-│   │   ├── auctionService.js
-│   │   └── tournamentService.js
-│   ├── styles/             # Global styles
-│   │   └── designSystem.css
-│   ├── App.jsx             # Main application component
-│   └── main.jsx            # Entry point
-├── index.html
-└── vite.config.js
-```
+### ⚔️ The Live Bidding War Room
+* **Real-Time WebSockets**: Bids, timer updates, and player states synchronize instantly across hundreds of connected clients with zero latency.
+* **Smart Bidding Engine**: Automated highest-bidder tracking, instant purse deduction validation, and clash-resolution logic.
+* **Dynamic Timer**: Server-authoritative countdown clock that resets based on live bid interactions.
 
-## Installation
+### 🎭 Role-Based Command Centers
+<details>
+<summary><b>🛡️ Franchise Team Owner</b></summary>
+<br/>
 
-### Prerequisites
-- Java 17+
-- Node.js 18+
-- PostgreSQL 14+
+* **Live Strategy Room**: Enter the private bidding portal to submit live bids.
+* **Dynamic Purse Management**: Real-time budget progress bars and spending velocity tracking.
+* **Squad Analytics**: View acquired players, icon player counts, and overall team balance metrics.
+</details>
 
-### Backend Setup
+<details>
+<summary><b>⚙️ Admin & Tournament Organizer</b></summary>
+<br/>
 
-1. Clone the repository:
+* **Platform Control Panel**: Massive command center to monitor live revenue pools, total franchises, and platform health.
+* **Auction Session Control**: Manually dictate the flow of the auction, select the next player, and officially declare "SOLD!".
+* **Tournament Setup**: Configure league rules, initialize massive player pools, and manage team registrations.
+</details>
+
+<details>
+<summary><b>🏏 The Players</b></summary>
+<br/>
+
+* **Glassmorphism Profile**: A breathtaking profile dashboard highlighting the player's custom jersey name and number.
+* **Trophy Cabinet**: Glowing 3D achievement cards for titles like "Best Batsman" or "Tournament MVP".
+* **Live Status**: Real-time "Hype Score" metrics, base price tags, and live tracking of their queue position.
+</details>
+
+---
+
+## 🛠️ Technology Stack
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="33%">
+        <img src="https://img.icons8.com/color/96/000000/react-native.png" alt="React"/><br/>
+        <b>React 18</b><br/><i>Frontend Core</i>
+      </td>
+      <td align="center" width="33%">
+        <img src="https://img.icons8.com/color/96/000000/tailwindcss.png" alt="Tailwind"/><br/>
+        <b>Tailwind CSS</b><br/><i>Glassmorphism Styling</i>
+      </td>
+      <td align="center" width="33%">
+        <img src="https://img.icons8.com/color/96/000000/spring-logo.png" alt="Spring"/><br/>
+        <b>Spring Boot 3</b><br/><i>Backend Services</i>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" width="33%">
+        <img src="https://img.icons8.com/color/96/000000/postgreesql.png" alt="PostgreSQL"/><br/>
+        <b>PostgreSQL</b><br/><i>Database & Persistence</i>
+      </td>
+      <td align="center" width="33%">
+        <img src="https://img.icons8.com/ios-filled/96/4a90e2/network-cable.png" alt="Sockets"/><br/>
+        <b>WebSockets (STOMP)</b><br/><i>Real-Time Sync</i>
+      </td>
+      <td align="center" width="33%">
+        <img src="https://img.icons8.com/color/96/000000/java-coffee-cup-logo.png" alt="Java"/><br/>
+        <b>Java 21</b><br/><i>Core Language</i>
+      </td>
+    </tr>
+  </table>
+</div>
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to get your local development environment up and running instantly. 
+
+### 🐧 Option A: Linux & macOS (Automated)
+
+We've bundled a powerful shell script that compiles the backend, installs frontend dependencies, and boots both servers simultaneously.
+
+1. **Clone the repository**
    ```bash
    git clone https://github.com/chethanhrx/CricketPro.git
-   cd CricketPro/backend
+   cd CricketPro
    ```
 
-2. Configure PostgreSQL database:
-   - Create a database named `cricketpro`:
-     ```sql
-     CREATE DATABASE cricketpro;
-     ```
-
-3. Update `application.properties`:
-   ```properties
-   spring.datasource.url=jdbc:postgresql://localhost:5432/cricketpro
-   spring.datasource.username=your_username
-   spring.datasource.password=your_password
-   spring.jpa.hibernate.ddl-auto=update
-   spring.jpa.show-sql=true
-   ```
-
-4. Run the Spring Boot application:
+2. **Run the master boot script**
    ```bash
-   ./mvnw spring-boot:run
+   chmod +x start.sh
+   ./start.sh
    ```
 
-### Frontend Setup
+3. **Open the App**  
+   Navigate to <kbd>http://localhost:5173</kbd> in your browser.
 
-1. Open a new terminal and navigate to the frontend directory:
-   ```bash
-   cd CricketPro/frontend
+> **Note**: To stop the servers gracefully, press <kbd>Ctrl</kbd> + <kbd>C</kbd>. If the database file remains locked upon restart, run `pkill -f java && rm -rf backend/data/*`.
+
+<br/>
+
+### 🪟 Option B: Windows (Manual Dual-Boot)
+
+1. **Start the Backend (Terminal 1)**
+   ```cmd
+   cd CricketPro\backend
+   .\mvnw.cmd spring-boot:run
    ```
+   *Wait until you see `CricketProApplication started`...*
 
-2. Install dependencies:
-   ```bash
+2. **Start the Frontend (Terminal 2)**
+   ```cmd
+   cd CricketPro\frontend
    npm install
-   ```
-
-3. Run the development server:
-   ```bash
    npm run dev
    ```
 
-4. Open your browser and navigate to:
-   - http://localhost:5173 - Application entry point
-   - http://localhost:8080 - Backend API
+3. **Open the App**  
+   Navigate to <kbd>http://localhost:5173</kbd>.
 
-## Usage
+---
 
-### Authentication
+## 🔑 Pre-Seeded Demo Accounts
 
-#### Demo Accounts (Pre-seeded)
-Use these credentials to test different user roles. They are automatically created on first startup.
+To save you time, CricketPro uses an automated `DataSeeder` that injects **55 players**, **2 teams**, and multiple configured users the very first time you boot the server.
 
-| Role | Name | Email | Password |
-|---|---|---|---|
-| **Admin** | Chethan | `admin@cricketpro.in` | `admin123` |
-| **Organizer** | Organizer Demo | `organizer@cricketpro.in` | `organizer123` |
-| **Team Owner** | Owner Royal Kings | `owner1@cricketpro.in` | `owner123` |
-| **Team Owner** | Owner Thunder XI | `owner2@cricketpro.in` | `owner123` |
-| **Player** | Manjunath H R | `player1@cricketpro.in` | `player123` |
-| **Player** | Rahul S | `player2@cricketpro.in` | `player123` |
-| **Scorer** | Scorer Demo | `scorer@cricketpro.in` | `scorer123` |
+Use these credentials to experience the customized dashboards:
 
-#### Register a new user
-```bash
-curl -X POST http://localhost:8080/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "username": "admin",
-    "password": "password",
-    "roles": ["ADMIN"]
-  }'
-```
+| User Type | Display Name | Login Email | Password |
+| :--- | :--- | :--- | :--- |
+| <kbd>Admin</kbd> | Chethan | `admin@cricketpro.in` | `admin123` |
+| <kbd>Organizer</kbd>| Organizer Demo | `organizer@cricketpro.in` | `organizer123` |
+| <kbd>Franchise</kbd>| Royal Kings | `owner1@cricketpro.in` | `owner123` |
+| <kbd>Franchise</kbd>| Thunder XI | `owner2@cricketpro.in` | `owner123` |
+| <kbd>Player</kbd> | Manjunath H R | `player1@cricketpro.in` | `player123` |
+| <kbd>Player</kbd> | Rahul S | `player2@cricketpro.in` | `player123` |
 
-#### Login
-```bash
-curl -X POST http://localhost:8080/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "username": "admin",
-    "password": "password"
-  }'
-```
+---
 
-Response will include an `accessToken` JWT token:
-```json
-{
-  "accessToken": "eyJhbGciOiJIUzI1NiJ9...",
-  "tokenType": "Bearer",
-  "username": "admin",
-  "roles": ["ADMIN"]
-}
-```
+## 🤝 Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 👨‍💻 Developer
+
+**Chethan (chethanhrx)**  
+[![GitHub](https://img.shields.io/badge/GitHub-chethanhrx-181717?style=for-the-badge&logo=github)](https://github.com/chethanhrx)
