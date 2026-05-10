@@ -96,153 +96,207 @@ export default function StrategyRoom() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-bg font-sans pt-16 pb-24 lg:pb-0">
+    <div className="min-h-screen flex flex-col bg-bg font-sans pt-16 pb-24 lg:pb-0 relative overflow-hidden">
       
+      {/* Dynamic Glowing Backgrounds */}
+      <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none overflow-hidden fixed">
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-brandRed/20 blur-[120px]"
+        />
+        <motion.div
+          animate={{ scale: [1, 1.5, 1], rotate: [0, -90, 0], opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-navy/20 blur-[100px]"
+        />
+      </div>
+
       {/* Top Private Budget Panel */}
       {myTeam && (
-        <div className="bg-navy text-white py-4 px-4 sm:px-6 sticky top-16 z-40 shadow-md border-b-4 border-gold">
+        <div className="bg-navy/95 backdrop-blur-xl text-white py-4 px-4 sm:px-6 sticky top-16 z-40 shadow-[0_10px_30px_rgba(26,26,46,0.5)] border-b border-gold/50">
           <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
             <div className="flex items-center gap-4">
-              <span className="text-2xl">👑</span>
+              <span className="text-3xl drop-shadow-[0_0_10px_rgba(245,166,35,0.8)]">👑</span>
               <div>
-                <div className="text-xs text-gray-400 font-bold tracking-widest uppercase">My Team</div>
-                <div className="text-xl font-black">{myTeam.teamName}</div>
+                <div className="text-xs text-gold font-bold tracking-widest uppercase mb-1">My Strategy Room</div>
+                <div className="text-2xl font-black drop-shadow-sm">{myTeam.teamName}</div>
               </div>
             </div>
             
-            <div className="flex gap-8">
+            <div className="flex gap-8 bg-white/5 px-6 py-2 rounded-2xl border border-white/10">
               <div>
-                <div className="text-xs text-gray-400 font-bold tracking-widest uppercase">Budget Remaining</div>
-                <div className="text-2xl font-black text-green-400">₹{myTeam.budgetRemaining?.toLocaleString()}</div>
+                <div className="text-[10px] text-gray-400 font-bold tracking-widest uppercase mb-1">Budget Remaining</div>
+                <div className="text-2xl font-black text-green-400 drop-shadow-[0_0_5px_rgba(74,222,128,0.5)]">₹{myTeam.budgetRemaining?.toLocaleString()}</div>
               </div>
+              <div className="w-px bg-white/10 mx-2"></div>
               <div>
-                <div className="text-xs text-gray-400 font-bold tracking-widest uppercase">Players Bought</div>
-                <div className="text-2xl font-black text-white">{myTeam.playersBought}</div>
+                <div className="text-[10px] text-gray-400 font-bold tracking-widest uppercase mb-1">Players Bought</div>
+                <div className="text-2xl font-black text-white text-center">{myTeam.playersBought}</div>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Main Content - 3 Column Layout (Similar to War Room but optimized for bidding) */}
-      <div className="flex-grow max-w-[1400px] mx-auto w-full p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+      {/* Main Content - 3 Column Layout */}
+      <div className="flex-grow max-w-[1400px] mx-auto w-full p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
         
         {/* Left Column (30%) - Player Card & Watchlist Alert */}
-        <div className="lg:col-span-4 xl:col-span-3 order-1 flex flex-col gap-4">
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="lg:col-span-4 xl:col-span-3 order-1 flex flex-col gap-6"
+        >
           {currentPlayer && currentPlayer.hypeScore > 80 && (
-             <div className="bg-yellow-100 border border-yellow-300 text-yellow-800 p-3 rounded-xl flex items-start gap-3 shadow-sm animate-pulse">
-               <span className="text-xl">🔔</span>
+             <motion.div 
+               initial={{ scale: 0.9, opacity: 0 }}
+               animate={{ scale: 1, opacity: 1 }}
+               className="bg-yellow-100/90 backdrop-blur-md border border-yellow-300 text-yellow-800 p-4 rounded-2xl flex items-start gap-4 shadow-lg animate-pulse"
+             >
+               <span className="text-2xl mt-1">🔔</span>
                <div>
-                 <div className="font-bold text-sm">HIGH PRIORITY TARGET</div>
-                 <div className="text-xs">This player matches your watchlist criteria.</div>
+                 <div className="font-black text-sm tracking-wide">HIGH PRIORITY TARGET</div>
+                 <div className="text-xs font-medium mt-1 opacity-80">This player matches your watchlist criteria.</div>
                </div>
-             </div>
+             </motion.div>
           )}
           <PlayerCard player={currentPlayer} />
-        </div>
+        </motion.div>
 
         {/* Center Column (40%) - Bidding Action */}
-        <div className="lg:col-span-4 xl:col-span-6 order-2 flex flex-col gap-6">
-          <div className={`card text-center py-8 relative overflow-hidden flex-shrink-0 transition-colors ${isMyHighestBid ? 'border-4 border-green-500 bg-green-50' : ''}`}>
+        <div className="lg:col-span-4 xl:col-span-6 order-2 flex flex-col gap-8">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`bg-white/60 backdrop-blur-md rounded-[2.5rem] border border-white shadow-[0_20px_40px_-15px_rgba(26,26,46,0.1)] text-center py-10 relative overflow-hidden flex-shrink-0 transition-all duration-500 ${isMyHighestBid ? 'shadow-[0_0_30px_rgba(74,222,128,0.3)] border-green-400' : ''}`}
+          >
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-navy/5 rounded-full blur-3xl"></div>
             
             {isMyHighestBid && (
-              <div className="absolute top-0 left-0 w-full bg-green-500 text-white text-xs font-bold py-1 tracking-widest uppercase">
+              <motion.div 
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                className="absolute top-0 left-0 w-full bg-green-500/90 backdrop-blur-sm text-white text-xs font-black py-2 tracking-widest uppercase shadow-sm"
+              >
                 You hold the highest bid
-              </div>
+              </motion.div>
             )}
 
-            <div className="text-sm font-bold tracking-widest text-gray-400 mb-2 mt-4">CURRENT HIGHEST BID</div>
+            <div className="text-sm font-bold tracking-widest text-gray-400 mb-2 mt-6 relative z-10">CURRENT HIGHEST BID</div>
             <motion.div 
               key={highestBid} 
               initial={{ scale: 1.2, color: '#E63946' }}
-              animate={{ scale: 1, color: isMyHighestBid ? '#2D7A3A' : '#F5A623' }}
-              className="text-6xl sm:text-7xl font-black mb-2"
+              animate={{ scale: 1, color: isMyHighestBid ? '#22c55e' : '#F5A623' }}
+              className="text-6xl sm:text-7xl font-black mb-2 drop-shadow-sm relative z-10"
             >
               ₹{highestBid.toLocaleString()}
             </motion.div>
-            <div className="text-lg font-bold text-navy h-6 mb-6">
+            <div className="text-lg font-bold text-navy h-6 mb-8 relative z-10">
               {currentHighestTeam ? (isMyHighestBid ? 'by YOUR TEAM' : `by ${currentHighestTeam}`) : 'Awaiting Bids'}
             </div>
             
-            <div className="max-w-sm mx-auto">
+            <div className="max-w-sm mx-auto relative z-10">
               <Timer secondsRemaining={timerSeconds} />
             </div>
 
             {auctionStatus !== 'ACTIVE' && auctionStatus !== 'SOLD' && (
-              <div className="absolute inset-0 bg-white/90 backdrop-blur-sm flex items-center justify-center z-10">
-                <div className="text-2xl font-black text-navy">{auctionStatus || 'AWAITING PLAYERS'}</div>
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-md flex items-center justify-center z-20">
+                <motion.div 
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-3xl font-black text-navy drop-shadow-sm tracking-tight"
+                >
+                  {auctionStatus || 'AWAITING PLAYERS'}
+                </motion.div>
               </div>
             )}
-          </div>
+          </motion.div>
 
-          <div className="flex-grow min-h-[250px]">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex-grow min-h-[250px]"
+          >
             <BidFeed bids={recentBids} currentHighestBid={highestBid} />
-          </div>
+          </motion.div>
         </div>
 
         {/* Right Column (30%) - Competitor Tracker */}
-        <div className="lg:col-span-4 xl:col-span-3 order-3 flex flex-col gap-6 h-full">
-          <div className="card flex-1 overflow-hidden flex flex-col">
-            <div className="text-xs font-bold tracking-widest text-gray-500 mb-4 border-b border-gray-100 pb-2">COMPETITOR TRACKER</div>
-            <div className="overflow-y-auto pr-2 space-y-3 flex-grow">
+        <motion.div 
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="lg:col-span-4 xl:col-span-3 order-3 flex flex-col gap-8 h-full"
+        >
+          <div className="bg-white/60 backdrop-blur-md rounded-[2rem] border border-white shadow-sm p-6 flex-1 overflow-hidden flex flex-col relative">
+            <div className="text-xs font-bold tracking-widest text-gray-500 mb-4 pb-2 border-b border-gray-200 uppercase">Competitor Tracker</div>
+            <div className="overflow-y-auto pr-2 space-y-3 flex-grow custom-scrollbar">
               {teamBudgets.filter(t => t.teamId !== myTeam?.teamId).map(team => (
-                <div key={team.teamId} className="flex justify-between items-center p-3 rounded-lg border border-gray-100">
+                <div key={team.teamId} className="flex justify-between items-center p-4 rounded-xl bg-white border border-gray-100 shadow-[0_4px_10px_-5px_rgba(0,0,0,0.05)]">
                   <div>
                     <div className="font-bold text-navy text-sm truncate max-w-[120px]">{team.teamName}</div>
-                    <div className="text-xs text-gray-500 font-medium">{team.playersBought} players</div>
+                    <div className="text-xs text-gray-500 font-bold mt-1 tracking-wider">{team.playersBought} PLAYERS</div>
                   </div>
                   <div className="text-right">
-                    <div className="font-black text-red-500 text-sm">₹{team.budgetRemaining?.toLocaleString()}</div>
-                    <div className="text-[10px] font-bold text-gray-400 uppercase">Left</div>
+                    <div className="font-black text-red-500 text-lg drop-shadow-[0_0_2px_rgba(239,68,68,0.2)]">₹{team.budgetRemaining?.toLocaleString()}</div>
+                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Left</div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Quick Bid Buttons (Fixed at bottom) */}
-      <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-50 lg:sticky">
+      <motion.div 
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        className="fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-xl border-t border-white p-4 shadow-[0_-20px_40px_rgba(26,26,46,0.15)] z-50 lg:sticky"
+      >
         <div className="max-w-4xl mx-auto">
           {auctionStatus === 'ACTIVE' && currentPlayer ? (
-            <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-6">
               <button 
                 onClick={() => handleBid(100)}
                 disabled={isMyHighestBid || !canAfford(highestBid + 100)}
-                className="btn-primary flex-1 sm:flex-none text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-navy hover:bg-navy/90 text-white font-black rounded-2xl shadow-[0_10px_20px_-10px_rgba(26,26,46,0.5)] hover:shadow-[0_15px_30px_-10px_rgba(26,26,46,0.6)] hover:-translate-y-1 transition-all flex-1 sm:flex-none text-lg py-4 px-8 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none relative overflow-hidden group"
               >
-                + ₹100
+                <span className="relative z-10">+ ₹100</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
               </button>
               <button 
                 onClick={() => handleBid(500)}
                 disabled={isMyHighestBid || !canAfford(highestBid + 500)}
-                className="btn-primary flex-1 sm:flex-none text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-navy hover:bg-navy/90 text-white font-black rounded-2xl shadow-[0_10px_20px_-10px_rgba(26,26,46,0.5)] hover:shadow-[0_15px_30px_-10px_rgba(26,26,46,0.6)] hover:-translate-y-1 transition-all flex-1 sm:flex-none text-lg py-4 px-8 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none relative overflow-hidden group"
               >
-                + ₹500
+                <span className="relative z-10">+ ₹500</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
               </button>
               <button 
                 onClick={() => handleBid(1000)}
                 disabled={isMyHighestBid || !canAfford(highestBid + 1000)}
-                className="btn-primary flex-1 sm:flex-none text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-navy hover:bg-navy/90 text-white font-black rounded-2xl shadow-[0_10px_20px_-10px_rgba(26,26,46,0.5)] hover:shadow-[0_15px_30px_-10px_rgba(26,26,46,0.6)] hover:-translate-y-1 transition-all flex-1 sm:flex-none text-lg py-4 px-8 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none relative overflow-hidden group"
               >
-                + ₹1,000
+                <span className="relative z-10">+ ₹1,000</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
               </button>
               <button 
                 onClick={handleAllIn}
                 disabled={isMyHighestBid || !canAfford(highestBid + 100)}
-                className="btn-danger flex-1 sm:flex-none text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed uppercase"
+                className="bg-brandRed hover:bg-brandRed/90 text-white font-black rounded-2xl shadow-[0_10px_20px_-10px_rgba(230,57,70,0.5)] hover:shadow-[0_15px_30px_-10px_rgba(230,57,70,0.6)] hover:-translate-y-1 transition-all flex-1 sm:flex-none text-lg py-4 px-8 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none uppercase tracking-widest relative overflow-hidden group"
               >
-                Go All In
+                <span className="relative z-10">Go All In</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
               </button>
             </div>
           ) : (
-            <div className="text-center font-bold text-gray-400 py-4">
+            <div className="text-center font-black tracking-widest text-gray-400 py-6 uppercase">
               Bidding is currently closed
             </div>
           )}
         </div>
-      </div>
+      </motion.div>
 
     </div>
   );

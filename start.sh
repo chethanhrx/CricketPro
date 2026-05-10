@@ -98,9 +98,7 @@ echo -e "${BLUE}🚀 Starting backend (Spring Boot on port 8080)...${NC}"
 cd "$BACKEND_DIR"
 
 # Build and run Spring Boot in the background
-mvn spring-boot:run -Dmaven.repo.local="$PROJECT_DIR/.m2/repository" -q -DskipTests 2>&1 | while IFS= read -r line; do
-    echo -e "   ${BLUE}[BACKEND]${NC} $line"
-done &
+mvn spring-boot:run -Dmaven.repo.local="$PROJECT_DIR/.m2/repository" -q -DskipTests &
 BACKEND_PID=$!
 
 echo -e "   ${GREEN}✓${NC} Backend starting (PID: $BACKEND_PID)"
@@ -114,9 +112,7 @@ sleep 5
 echo -e "${BLUE}🎨 Starting frontend (Vite on port 5173)...${NC}"
 cd "$FRONTEND_DIR"
 
-npx vite --host 2>&1 | while IFS= read -r line; do
-    echo -e "   ${PURPLE}[FRONTEND]${NC} $line"
-done &
+npx vite --host &
 FRONTEND_PID=$!
 
 echo -e "   ${GREEN}✓${NC} Frontend starting (PID: $FRONTEND_PID)"
