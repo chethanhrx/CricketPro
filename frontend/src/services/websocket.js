@@ -63,6 +63,10 @@ export function sendMessage(destination, body) {
   });
 }
 
+export function sendBid(tournamentId, playerId, teamId, amount) {
+  sendMessage(`/app/auction/${tournamentId}/bid`, { playerId, teamId, amount });
+}
+
 /**
  * Disconnect WebSocket.
  */

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CricketPro — Live Cricket Auction War Room. Watch every bid in real time." />
+    <title>CricketPro — Live Cricket Auctions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Tailwind CSS Play CDN (Fallback) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy:   '#1A1A2E',
+              gold:   '#F5A623',
+              green:  '#2D7A3A',
+              red:    '#E63946',
+              bg:     '#FAFAFA',
+              card:   '#FFFFFF',
+              muted:  '#6B7280',
+              border: '#E5E7EB',
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style type="text/tailwindcss">
+      @layer base {
+        body {
+          @apply bg-bg text-navy font-sans antialiased;
+        }
+      }
+
+      @layer components {
+        .page-title { @apply text-3xl font-black text-navy tracking-tight; }
+        .section-header { @apply text-xl font-bold text-navy; }
+        .body-text { @apply text-base text-gray-700; }
+        .label-badge { @apply text-xs font-semibold uppercase tracking-wider; }
+        .bid-amount { @apply font-black text-gold; }
+        .card { @apply bg-card rounded-2xl shadow-sm border border-border p-6; }
+        .btn-primary { @apply bg-gold text-white font-bold px-6 py-3 rounded-xl hover:bg-yellow-500 transition-all; }
+        .btn-secondary { @apply border-2 border-navy text-navy font-bold px-6 py-3 rounded-xl hover:bg-navy hover:text-white transition-all; }
+        .btn-danger { @apply bg-red text-white font-bold px-6 py-3 rounded-xl; }
+        .badge-live { @apply inline-flex items-center gap-1.5 bg-green-50 text-green-700 text-xs font-bold px-3 py-1 rounded-full border border-green-200; }
+      }
+
+      ::-webkit-scrollbar { width: 8px; height: 8px; }
+      ::-webkit-scrollbar-track { background: #FAFAFA; }
+      ::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #6B7280; }
+    </style>
+    <script type="module" crossorigin src="/assets/index-BJvYak6O.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-tn0RQdqM.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>if(typeof global==='undefined'){window.global=globalThis;}</script>
+  </body>
+</html>

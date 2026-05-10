@@ -5,9 +5,13 @@
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/controller/AuctionController.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/controller/AuctionWebSocketController.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/controller/AuthController.java
+/home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/controller/PlayerController.java
+/home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/controller/TeamController.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/controller/TournamentController.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/dto/AuctionDTO.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/dto/AuthDTO.java
+/home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/dto/PlayerDTO.java
+/home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/dto/TeamDTO.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/dto/TournamentDTO.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/exception/GlobalExceptionHandler.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/model/AuctionBid.java
@@ -32,6 +36,7 @@
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/repository/AuctionPlayerQueueRepository.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/repository/AuctionSessionRepository.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/repository/PlayerRepository.java
+/home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/repository/PlayerStatsRepository.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/repository/TeamRepository.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/repository/TournamentRepository.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/repository/UserRepository.java
@@ -39,5 +44,7 @@
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/service/AuctionService.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/service/AuctionTimerService.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/service/AuthService.java
+/home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/service/PlayerService.java
+/home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/service/TeamService.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/service/TournamentService.java
 /home/chethan/projects/CRICKETPRO/backend/src/main/java/com/cricketpro/util/JwtUtil.java

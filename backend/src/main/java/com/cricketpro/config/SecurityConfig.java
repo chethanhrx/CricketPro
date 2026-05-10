@@ -49,7 +49,11 @@ public class SecurityConfig {
                 .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/tournaments/public/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/tournaments/*/public").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/tournaments/slug/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/players/all").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/players/tournament/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/players/*/profile").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/teams/tournament/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/auction/*/warroom").permitAll()
 
                 // Role-based access
