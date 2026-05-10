@@ -1,9 +1,6 @@
 <!-- PROJECT LOGO & HERO -->
 <br />
 <div align="center">
-  <a href="https://github.com/chethanhrx/CricketPro">
-    <img src="https://img.icons8.com/?size=256&id=V9A1AovVp1E4&format=png" alt="Logo" width="120" height="120">
-  </a>
 
   <h1 align="center">🏏 CRICKETPRO</h1>
 
